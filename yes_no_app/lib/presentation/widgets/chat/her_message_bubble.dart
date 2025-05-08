@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/domain/entities/message.dart';
 
 class HerMessageBubble extends StatelessWidget {
-  const HerMessageBubble({super.key});
+  final Message message;
+
+  const HerMessageBubble({
+    super.key, 
+    required this.message
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +24,10 @@ class HerMessageBubble extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
 
-          child: const Padding(
+          child: Padding(
             padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
             child: Text(
-              'Hola mundo',
+              message.text,
               style: TextStyle(
                 color: Colors.white,
               ),
@@ -31,17 +37,18 @@ class HerMessageBubble extends StatelessWidget {
 
         const SizedBox(height: 5.0),
 
-        _ImageBubble(),
+        _ImageBubble(message.imageUrl!),
 
         SizedBox(height: 10.0),
-
-        //TODO: Imagen
       ],
     );
   }
 }
 
 class _ImageBubble extends StatelessWidget {
+  final String imageUrl;
+
+  const _ImageBubble( this.imageUrl );
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +58,7 @@ class _ImageBubble extends StatelessWidget {
     return ClipRRect( // El ClipRRect recorta el widget hijo a la forma del rectángulo que se le pasa
       borderRadius: BorderRadius.circular(20),
       child: Image.network(
-        'https://yesno.wtf/assets/no/23-5fe6c1ca6c78e7bf9a7cf43e406fb8db.gif',
+        imageUrl,
         width: size.width * 0.7, // Toma el 70% del ancho de la pantalla
         height: 150,
         fit: BoxFit.cover, // Ajusta la imagen al tamaño del contenedor
