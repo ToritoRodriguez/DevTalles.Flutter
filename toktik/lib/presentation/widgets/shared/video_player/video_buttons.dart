@@ -19,7 +19,10 @@ class VideoButtons extends StatelessWidget {
         _CustomIconButton( value: video.likes, iconData: Icons.favorite, iconColor: Colors.red),
         
         const SizedBox(height: 10),
-        _CustomIconButton( value: video.likes, iconData: Icons.remove_red_eye_outlined),
+        _CustomIconButton(value: video.comments, iconData: Icons.add_comment_outlined, iconColor: Colors.blue,),
+
+        const SizedBox(height: 10),
+        _CustomIconButton( value: video.likes, iconData: Icons.send),
 
         const SizedBox(height: 10),
         SpinPerfect(
